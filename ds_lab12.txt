@@ -1,0 +1,13 @@
+import org.apache.spark.mllib.linalg.{Vectors,Matrices}
+import org.apache.spark.mllib.linalg.distributed.{IndexedRow,IndexedRowMatrix}
+
+val rows =sc.parallelize(Seq(
+(0l,Array(1.0,0.0,0.0)),
+(0l,Array(0.0,1.0,0.0)),
+(0l,Array(0.0,0.0,1.0)))
+).map{case(i,xs)=> IndexedRow(i,Vectors.dense(xs))}
+
+val indexedRowMatrix = new IndexedRowMatrix(rows)
+
+val localMatrix = Matrices.dense(3,2, Array(1.0,2.0,3.0,4.0,5.0,6.0))
+indexedRowMatrix.multiply(localMatrix).rows.collect
