@@ -17,8 +17,10 @@ val (tempSum, dewSum, windSum, count) = lines.foldLeft((0.0, 0.0, 0.0, 0)) {
     )
 }
 
-println(s"Sum of temperature: $tempSum")
-println(s"Sum of dew point: $dewSum")
-println(s"Sum of wind speed: $windSum")
-println(s"Count of records: $count")
+val avgTemp= tempSum/count
+val avgDew = dewSum/count
+val avgWind = windSum/count
+println(s"Average temperature: $avgTemp")
+println(s"Average dew point: $avgDew")
+println(s"Average wind speed: $avgWind")
 
